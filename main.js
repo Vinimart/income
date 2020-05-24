@@ -99,7 +99,7 @@ class Controller {
         this.id = 1
     }
 
-    AddModel() {
+    addModel() {
 
         this.model = new Model(
             this.itaucard.value,
@@ -111,10 +111,32 @@ class Controller {
         )
     }
 
-    AddRender() {
+    addRender() {
         
         this.view = new View(this.model.resultado())
         this.resultado.innerHTML = this.view.render()
+    }
+
+    addTable() {
+
+        this.list = [
+            {
+                id: this.id,
+                mes: this.mes.value,
+                itaucard: this.itaucard.value,
+                nubank: this.nubank.value,
+                anne: this.anne.value,
+                radamer: this.radamer.value,
+                salario: this.salario.value,
+                carteira: this.carteira.value,
+                planejado: this.planejado.value,
+                gasto: this.model.calculoDespesa(),
+                resultado: this.model.resultado()
+            }
+        ]
+
+        this.id++
+        console.log(this.list)
     }
 
     clearForm() {
@@ -127,22 +149,27 @@ class Controller {
         this.carteira.value = ''
         this.planejado.value = ''
         this.mes.value = ''
+        this.resultado.innerHTML = ''
+        this.addContainer.classList.add('d-none')
     }
 
     observe() {
 
         this.calcBtn.addEventListener('click', () => {
 
-            this.AddModel()
-            this.AddRender()
+            this.addModel()
+            this.addRender()
             this.addContainer.classList.remove('d-none')
         })
 
         this.clearBtn.addEventListener('click', () => {
 
             this.clearForm()
-            this.resultado.innerHTML = ''
-            this.addContainer.classList.add('d-none')
+        })
+
+        this.addBtn.addEventListener('click', () => {
+            this.addTable()
+            this.clearForm()
         })
     }
 }
