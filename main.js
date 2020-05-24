@@ -15,9 +15,10 @@ class Model {
 
         this.cartoes = this.itaucard + this.nubank
         this.dividendos = this.anne + this.radamer
+            
         this.despesaTotal = this.cartoes - this.dividendos
 
-        return this.despesaTotal.toFixed(2)
+        return this.despesaTotal
     }
 
     calculoRenda() {
@@ -27,27 +28,30 @@ class Model {
         return this.rendaTotal.toFixed(2)
     }
 
-    calculoGuardou() {
-
+    totalConvertido() {
         this.total = this.resultado()
         this.total = this.total.replace('- R$ ', '')
         this.total = this.total.replace('R$ ', '')
         this.total = parseInt(this.total)
+        return this.total
+    }
 
-        if (this.total > this.planejado && this.planejado != 0) {
+    calculoGuardou() {
 
-            this.guardou = this.total - this.planejado
+        if (this.totalConvertido() > this.planejado && this.planejado != 0) {
+
+            this.guardou = this.totalConvertido() - this.planejado
         } else {
 
             this.guardou = 0
         }
 
-        return this.guardou.toFixed(2)
+        return this.guardou
     }
 
     resultado() {
 
-        if (this.calculoRenda() > this.calculoDespesa() || this.calculoRenda() === this.calculoDespesa()) {
+        if (this.calculoRenda() > this.calculoDespesa() || this.calculoRenda() == this.calculoDespesa()) {
 
             this.total = `R$ ${(this.calculoRenda() - this.calculoDespesa()).toFixed(2)}` 
         } else {
@@ -80,12 +84,12 @@ class View {
         `
     }
 
-    renderTr(id, mes, despesa, resultado, guardou) {
+    renderTr(id, mes, despesa, restante, guardou) {
         return `
         <tr id="${id}">
             <th id="mes${id}" scope="row">${mes}</th>
             <td id="gasto${id}">R$ ${despesa}</td>
-            <td id="restante${id}">${resultado}</td>
+            <td id="restante${id}">R$ ${restante}</td>
             <td id="guardou${id}">R$ ${guardou}</td>
         </tr>
         `
@@ -111,6 +115,7 @@ class Controller {
         this.clearBtn = document.getElementById('clear-btn')
         this.tabela = document.getElementById('tabela')
 
+
         this.list = []
         this.id = 0
     }
@@ -126,17 +131,20 @@ class Controller {
             this.carteira.value,
             this.planejado.value
         )
+
+        this.addRender()
     }
 
     addRender() {
         
         this.view = new View(this.model.resultado())
         this.resultado.innerHTML = this.view.render()
+        this.addContainer.classList.remove('d-none')
     }
 
     addTable() {
 
-        this.list = [
+        this.list.push(
             {
                 id: this.id,
                 mes: this.mes.value,
@@ -151,11 +159,10 @@ class Controller {
                 resultado: this.model.resultado(),
                 guardou: this.model.calculoGuardou()
             }
-        ]
-        
-        this.tabela.insertAdjacentHTML('beforeend', this.view.renderTr(this.id,  this.mes.value, this.model.calculoDespesa(), this.model.resultado(), this.model.calculoGuardou()))
+        )
+            
+        this.tabela.insertAdjacentHTML('beforeend', this.view.renderTr(this.id,  this.mes.value, this.model.calculoDespesa(), this.planejado.value, this.model.calculoGuardou()))
         this.id++
-
     }
 
     clearForm() {
@@ -177,8 +184,6 @@ class Controller {
         this.calcBtn.addEventListener('click', () => {
 
             this.addModel()
-            this.addRender()
-            this.addContainer.classList.remove('d-none')
         })
 
         this.clearBtn.addEventListener('click', () => {
@@ -187,6 +192,7 @@ class Controller {
         })
 
         this.addBtn.addEventListener('click', () => {
+
             this.addTable()
             this.clearForm()
         })
