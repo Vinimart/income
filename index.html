@@ -20,43 +20,47 @@
             <div class="row">
                 <div class="col-sm">
                     <h5>Itaucard</h5>
-                    
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="itaucard" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="itaucard" type="text" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" placeholder="0">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <h5>Nubank</h5>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="nubank" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="nubank" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            placeholder="0">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <h5>Anne</h5>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="anne" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="anne" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            placeholder="0">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <h5>Radamer</h5>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="radamer" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="radamer" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            placeholder="0">
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,37 +70,40 @@
             <div class="row">
                 <div class="col-sm">
                     <h5>Salário</h5>
-                    
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="salario" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="salario" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            placeholder="0">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <h5>Carteira</h5>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="carteira" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="carteira" type="text" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" placeholder="0">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <h5>Planejado</h5>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">$</span>
+                            <span class="input-group-text">$</span>
                         </div>
-                        <input id="planejado" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
-                      </div>
+                        <input id="planejado" type="text" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" placeholder="0">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <h5>&nbsp;</h5>
-                    <button id="calc-btn" type="button" class="btn btn-outline-primary btn-block">Calcular</button>
+                    <button id="calc-btn" type="submit" class="btn btn-outline-primary btn-block">Calcular</button>
                 </div>
             </div>
         </div>
@@ -108,7 +115,8 @@
             <div id="add-container" class="row d-none">
                 <div class="col-sm">
                     <h5>Mês</h5>
-                    <input id="mes" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Janeiro">
+                    <input id="mes" type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                        placeholder="Janeiro">
                 </div>
                 <div class="col-sm">
                     <h5>&nbsp;</h5>
@@ -129,22 +137,25 @@
 
             <table class="table table-bordered">
                 <thead>
-                  <tr>
-                    <th scope="col">Mês</th>
-                    <th scope="col">Gasto</th>
-                    <th scope="col">Restante</th>
-                    <th scope="col">Guardou</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">Mês</th>
+                        <th scope="col">Gasto</th>
+                        <th scope="col">Restante</th>
+                        <th scope="col">Guardou</th>
+                    </tr>
                 </thead>
                 <tbody id="tabela">
-                  <tr id="0">
-                    <th id="mes0" scope="row">Maio</th>
-                    <td id="gasto0">R$ 1133.00</td>
-                    <td id="restante0">R$ 17.00</td>
-                    <td id="guardou0">R$ 00.00</td>
+                    <!-- Teste
+                    <tr id="teste">
+                    <th id="mesteste" scope="row">Maio</th>
+                    <td id="gastoteste">R$ 1133.00</td>
+                    <td id="restanteteste">R$ 17.00</td>
+                    <td id="guardouteste">R$ 00.00</td>
                   </tr>
+                    -->
+
                 </tbody>
-              </table>
+            </table>
 
         </div>
     </main>

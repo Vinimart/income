@@ -1,6 +1,6 @@
 class Model {
 
-    constructor(itaucard, nubank, anne, radamer, salario, carteira) {
+    constructor(itaucard, nubank, anne, radamer, salario, carteira, planejado) {
 
         this.itaucard = itaucard ? parseFloat(itaucard) : itaucard = 0
         this.nubank = nubank ? parseFloat(nubank) : nubank = 0
@@ -8,6 +8,7 @@ class Model {
         this.radamer = radamer ? parseFloat(radamer) : radamer = 0
         this.salario = salario ? parseFloat(salario) : salario = 0
         this.carteira = carteira ? parseFloat(carteira) : carteira = 0
+        this.planejado = planejado ? parseFloat(planejado) : planejado = 0
     }
 
     calculoDespesa() {
@@ -16,14 +17,32 @@ class Model {
         this.dividendos = this.anne + this.radamer
         this.despesaTotal = this.cartoes - this.dividendos
 
-        return this.despesaTotal
+        return this.despesaTotal.toFixed(2)
     }
 
     calculoRenda() {
 
         this.rendaTotal = this.salario + this.carteira
 
-        return this.rendaTotal
+        return this.rendaTotal.toFixed(2)
+    }
+
+    calculoGuardou() {
+
+        this.total = this.resultado()
+        this.total = this.total.replace('- R$ ', '')
+        this.total = this.total.replace('R$ ', '')
+        this.total = parseInt(this.total)
+
+        if (this.total > this.planejado && this.planejado != 0) {
+
+            this.guardou = this.total - this.planejado
+        } else {
+
+            this.guardou = 0
+        }
+
+        return this.guardou.toFixed(2)
     }
 
     resultado() {
@@ -42,13 +61,9 @@ class Model {
 
 class View {
 
-    constructor(resultado, id, mes, gasto) {
+    constructor(resultado) {
 
         this.resultado = resultado
-        this.id = id
-        this.mes = mes
-        this.despesaTotal = gasto
-
         this.negativo = 'text-danger'
         this.positivo = 'text-success'
     }
@@ -65,13 +80,13 @@ class View {
         `
     }
 
-    renderTr() {
+    renderTr(id, mes, despesa, resultado, guardou) {
         return `
-        <tr id="${this.id}">
-            <th id="mes${this.id}" scope="row">${this.mes}</th>
-            <td id="gasto${this.id}">R$ ${this.despesaTotal}</td>
-            <td id="restante${this.id}">${this.resultado}</td>
-            <td id="guardou${this.id}">R$ 00.00</td>
+        <tr id="${id}">
+            <th id="mes${id}" scope="row">${mes}</th>
+            <td id="gasto${id}">R$ ${despesa}</td>
+            <td id="restante${id}">${resultado}</td>
+            <td id="guardou${id}">R$ ${guardou}</td>
         </tr>
         `
     }
@@ -94,9 +109,10 @@ class Controller {
         this.mes = document.getElementById('mes')
         this.addBtn = document.getElementById('add-btn')
         this.clearBtn = document.getElementById('clear-btn')
+        this.tabela = document.getElementById('tabela')
 
         this.list = []
-        this.id = 1
+        this.id = 0
     }
 
     addModel() {
@@ -107,7 +123,8 @@ class Controller {
             this.anne.value,
             this.radamer.value,
             this.salario.value,
-            this.carteira.value
+            this.carteira.value,
+            this.planejado.value
         )
     }
 
@@ -131,12 +148,14 @@ class Controller {
                 carteira: this.carteira.value,
                 planejado: this.planejado.value,
                 gasto: this.model.calculoDespesa(),
-                resultado: this.model.resultado()
+                resultado: this.model.resultado(),
+                guardou: this.model.calculoGuardou()
             }
         ]
-
+        
+        this.tabela.insertAdjacentHTML('beforeend', this.view.renderTr(this.id,  this.mes.value, this.model.calculoDespesa(), this.model.resultado(), this.model.calculoGuardou()))
         this.id++
-        console.log(this.list)
+
     }
 
     clearForm() {
