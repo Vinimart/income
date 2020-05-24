@@ -34,7 +34,7 @@ class Model {
 
             this.total = `- R$ ${(this.despesaTotal - this.rendaTotal).toFixed(2)}`
         }
-        console.log(this.itaucard)
+
         return this.total
     }
 }
@@ -44,12 +44,19 @@ class View {
     constructor(resultado) {
 
         this.resultado = resultado
+        this.negativo = 'text-danger'
+        this.positivo = 'text-success'
+    }
+
+    operador() {
+        this.positivoNegativo = this.resultado.includes('-') ? this.negativo : this.positivo
+        return this.positivoNegativo
     }
 
     render() {
 
         return `
-        <h1>${this.resultado}</h1>
+        <h1 class="${this.operador()}">${this.resultado}</h1>
         `
     }
 }
@@ -68,22 +75,30 @@ class Controller {
         this.resultado = document.getElementById('resultado')
     }
 
+    AddModel() {
+
+        this.model = new Model(
+            this.itaucard.value,
+            this.nubank.value,
+            this.anne.value,
+            this.radamer.value,
+            this.salario.value,
+            this.carteira.value
+        )
+    }
+
+    AddRender() {
+        
+        this.view = new View(this.model.resultado())
+        this.resultado.innerHTML = this.view.render()
+    }
+
     observe() {
 
         this.calcBtn.addEventListener('click', () => {
 
-            this.model = new Model(
-                this.itaucard.value,
-                this.nubank.value,
-                this.anne.value,
-                this.radamer.value,
-                this.salario.value,
-                this.carteira.value
-            )
-
-            this.view = new View(this.model.resultado())
-            this.resultado.innerHTML = this.view.render()
+            this.AddModel()
+            this.AddRender()
         })
     }
-
 }
