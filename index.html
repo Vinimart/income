@@ -25,7 +25,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input id="itaucard" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input id="itaucard" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
                       </div>
                 </div>
                 <div class="col-sm">
@@ -35,7 +35,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input id="nubank" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input id="nubank" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
                       </div>
                 </div>
                 <div class="col-sm">
@@ -45,7 +45,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input id="anne" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input id="anne" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
                       </div>
                 </div>
                 <div class="col-sm">
@@ -55,7 +55,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input id="radamer" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input id="radamer" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
                       </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input id="salario" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input id="salario" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
                       </div>
                 </div>
                 <div class="col-sm">
@@ -81,7 +81,17 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input id="carteira" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input id="carteira" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
+                      </div>
+                </div>
+                <div class="col-sm">
+                    <h5>Planejado</h5>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">$</span>
+                        </div>
+                        <input id="planejado" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
                       </div>
                 </div>
                 <div class="col-sm">
@@ -92,11 +102,50 @@
         </div>
 
         <div id="resultado" class="container mt-4 text-center">
-            &nbsp;
+        </div>
+
+        <div class="container mt-4">
+            <div id="add-container" class="row d-none">
+                <div class="col-sm">
+                    <h5>Mês</h5>
+                    <input id="mes" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Janeiro">
+                </div>
+                <div class="col-sm">
+                    <h5>&nbsp;</h5>
+                    <button id="add-btn" type="button" class="btn btn-outline-primary btn-block">Add</button>
+                </div>
+                <div class="col-sm">
+                    <h5>&nbsp;</h5>
+                    <button id="clear-btn" type="button" class="btn btn-outline-danger btn-block">Limpar</button>
+                </div>
+            </div>
         </div>
 
         <div class="container mt-4">
             <hr>
+        </div>
+
+        <div class="container mt-4">
+
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Mês</th>
+                    <th scope="col">Gasto</th>
+                    <th scope="col">Restante</th>
+                    <th scope="col">Guardou</th>
+                  </tr>
+                </thead>
+                <tbody id="tabela">
+                  <tr id="0">
+                    <th id="mes0" scope="row">Maio</th>
+                    <td id="gasto0">R$ 1133.00</td>
+                    <td id="restante0">R$ 17.00</td>
+                    <td id="guardou0">R$ 00.00</td>
+                  </tr>
+                </tbody>
+              </table>
+
         </div>
     </main>
 
